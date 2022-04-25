@@ -8,6 +8,152 @@
     <title>Around the US</title>
   </head>
   <body>
+    <div class="page">
+      <header class="header">
+        <img src="./images/logo.svg" alt="logo" class="header__logo" />
+        <div class="header__line"></div>
+      </header>
+      <main class="main">
+        <section class="profile">
+          <img
+            src="./images/profile__avatar.jpg"
+            alt="Profile Photo"
+            class="profile__avatar"
+          />
+          <article class="profile__info">
+            <h3 class="profile__name">Jacques Cosuteau</h3>
+            <button type="button" class="profile__edit-button">
+              <img
+                src="./images/profile__edit-button-image.svg"
+                alt="Edit button symbol"
+                class="profile__edit-button-image"
+              />
+            </button>
+            <p class="profile__title">Explorer</p>
+          </article>
+          <button type="button" class="profile__add-button">
+            <img
+              src="./images/profile__add-button-image.svg"
+              alt="Add button symbol"
+              class="prfile__add-button-image"
+            />
+          </button>
+        </section>
+        <section class="cards">
+          <article class="card">
+            <img
+              src="./images/grid_photo_1.jpg"
+              alt="A photo of Yosemite Valley"
+              class="card__image"
+            />
+            <h3 class="card__title">Yosemite Valley</h3>
+            <button type="button" class="card__like-button">
+              <img
+                src="./images/like-button__image.svg"
+                alt="Like button symbol"
+                class="card__like-button-image"
+              />
+            </button>
+          </article>
+          <article class="card">
+            <img
+              src="./images/grid_photo_2.jpg"
+              alt="A photo of Lake Louise"
+              class="card__image"
+            />
+            <h3 class="card__title">Lake Louise</h3>
+            <button type="button" class="card__like-button">
+              <img
+                src="./images/like-button__image.svg"
+                alt="Like button symbol"
+                class="card__like-button-image"
+              />
+            </button>
+          </article>
+          <article class="card">
+            <img
+              src="./images/grid_photo_3.jpg"
+              alt="A photo of Bald Mountains"
+              class="card__image"
+            />
+            <h3 class="card__title">Bald Mountains</h3>
+            <button type="button" class="card__like-button">
+              <img
+                src="./images/like-button__image.svg"
+                alt="Like button symbol"
+                class="card__like-button-image"
+              />
+            </button>
+          </article>
+          <article class="card">
+            <img
+              src="./images/grid_photo_4.jpg"
+              alt="A photo of Latemar"
+              class="card__image"
+            />
+            <h3 class="card__title">Latemar</h3>
+            <button type="button" class="card__like-button">
+              <img
+                src="./images/like-button__image.svg"
+                alt="Like button symbol"
+                class="card__like-button-image"
+              />
+            </button>
+          </article>
+          <article class="card">
+            <img
+              src="./images/grid_photo_5.jpg"
+              alt="A photo of Vanoise National"
+              class="card__image"
+            />
+            <h3 class="card__title">Vanoise National</h3>
+            <button type="button" class="card__like-button">
+              <img
+                src="./images/like-button__image.svg"
+                alt="Like button symbol"
+                class="card__like-button-image"
+              />
+            </button>
+          </article>
+          <article class="card">
+            <img
+              src="./images/grid_photo_6.jpg"
+              alt="A photo of Lago di Braies"
+              class="card__image"
+            />
+            <h3 class="card__title">Lago di Braies</h3>
+            <button type="button" class="card__like-button">
+              <img
+                src="./images/like-button__image.svg"
+                alt="Like button symbol"
+                class="card__like-button-image"
+              />
+            </button>
+          </article>
+        </section>
+      </main>
+      <footer class="footer">
+        <p class="footer__copyright">
+          &copy; 2022 Around the U.S. - Ozan Sevkin
+        </p>
+      </footer>
+      <div class="popup">
+        <form class="popup__container">
+          <button class="popup__close-button">
+            <img
+              src="./images/popup__close-button-image.svg"
+              alt="Close Icon"
+            />
+          </button>
+          <h3 class="popup__title">Edit Profile</h3>
+          <fieldset>
+            <input type="text" name="name" placeholder="Name" />
+            <input type="text" name="title" placeholder="Title" />
+            <button type="submit" class="popup__submit-button">Save</button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
