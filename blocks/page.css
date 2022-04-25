@@ -1,0 +1,12 @@
+.page {
+  background-color: #000;
+}
+
+.page__content {
+  max-width: 880px;
+  margin: 45px auto 60px auto;
+  font-family: "Inter", "Arial", sans-serif;
+  font-size: 16px;
+  line-height: 1.2;
+  color: #fff;
+}
