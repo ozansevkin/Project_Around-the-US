@@ -1,0 +1,60 @@
+.profile {
+  display: flex;
+}
+
+.profile__avatar {
+  width: 120px;
+  border-radius: 50%;
+}
+
+.profile__info {
+  margin-right: 165px;
+  margin-left: 30px;
+  display: grid;
+  grid-template-columns: minmax(auto, 373px) auto;
+  grid-template-rows: auto auto;
+  gap: 16px 18px;
+  align-items: baseline;
+}
+
+.profile__name {
+  margin: 0;
+  font-size: 42px;
+  line-height: 1.15;
+  font-weight: 500;
+  align-self: flex-end;
+  position: relative;
+  top: 7px;
+}
+
+.profile__edit-button {
+  background-color: inherit;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #fff;
+  box-sizing: border-box;
+  align-self: flex-end;
+}
+
+.profile__edit-button:hover {
+  opacity: 0.6;
+}
+
+.profile__title {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.profile__add-button {
+  background-color: inherit;
+  width: 150px;
+  height: 50px;
+  border: 2px solid #fff;
+  box-sizing: border-box;
+  align-self: center;
+}
+
+.profile__add-button:hover {
+  opacity: 0.6;
+}
