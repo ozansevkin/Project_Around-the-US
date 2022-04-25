@@ -46,14 +46,16 @@
               alt="A photo of Yosemite Valley"
               class="card__image"
             />
-            <h3 class="card__title">Yosemite Valley</h3>
-            <button type="button" class="card__like-button">
-              <img
-                src="./images/like-button__image.svg"
-                alt="Like button symbol"
-                class="card__like-button-image"
-              />
-            </button>
+            <div class="card__info">
+              <h3 class="card__title">Yosemite Valley</h3>
+              <button type="button" class="card__like-button">
+                <img
+                  src="./images/like-button__image.svg"
+                  alt="Like button symbol"
+                  class="card__like-button-image"
+                />
+              </button>
+            </div>
           </article>
           <article class="card">
             <img
@@ -61,14 +63,16 @@
               alt="A photo of Lake Louise"
               class="card__image"
             />
-            <h3 class="card__title">Lake Louise</h3>
-            <button type="button" class="card__like-button">
-              <img
-                src="./images/like-button__image.svg"
-                alt="Like button symbol"
-                class="card__like-button-image"
-              />
-            </button>
+            <div class="card__info">
+              <h3 class="card__title">Lake Louise</h3>
+              <button type="button" class="card__like-button">
+                <img
+                  src="./images/like-button__image.svg"
+                  alt="Like button symbol"
+                  class="card__like-button-image"
+                />
+              </button>
+            </div>
           </article>
           <article class="card">
             <img
@@ -76,14 +80,16 @@
               alt="A photo of Bald Mountains"
               class="card__image"
             />
-            <h3 class="card__title">Bald Mountains</h3>
-            <button type="button" class="card__like-button">
-              <img
-                src="./images/like-button__image.svg"
-                alt="Like button symbol"
-                class="card__like-button-image"
-              />
-            </button>
+            <div class="card__info">
+              <h3 class="card__title">Bald Mountains</h3>
+              <button type="button" class="card__like-button">
+                <img
+                  src="./images/like-button__image.svg"
+                  alt="Like button symbol"
+                  class="card__like-button-image"
+                />
+              </button>
+            </div>
           </article>
           <article class="card">
             <img
@@ -91,29 +97,33 @@
               alt="A photo of Latemar"
               class="card__image"
             />
-            <h3 class="card__title">Latemar</h3>
-            <button type="button" class="card__like-button">
-              <img
-                src="./images/like-button__image.svg"
-                alt="Like button symbol"
-                class="card__like-button-image"
-              />
-            </button>
+            <div class="card__info">
+              <h3 class="card__title">Latemar</h3>
+              <button type="button" class="card__like-button">
+                <img
+                  src="./images/like-button__image.svg"
+                  alt="Like button symbol"
+                  class="card__like-button-image"
+                />
+              </button>
+            </div>
           </article>
           <article class="card">
             <img
               src="./images/grid_photo_5.jpg"
-              alt="A photo of Vanoise National"
+              alt="A photo of Vanoise National Park"
               class="card__image"
             />
-            <h3 class="card__title">Vanoise National</h3>
-            <button type="button" class="card__like-button">
-              <img
-                src="./images/like-button__image.svg"
-                alt="Like button symbol"
-                class="card__like-button-image"
-              />
-            </button>
+            <div class="card__info">
+              <h3 class="card__title">Vanoise National Park</h3>
+              <button type="button" class="card__like-button">
+                <img
+                  src="./images/like-button__image.svg"
+                  alt="Like button symbol"
+                  class="card__like-button-image"
+                />
+              </button>
+            </div>
           </article>
           <article class="card">
             <img
@@ -121,14 +131,16 @@
               alt="A photo of Lago di Braies"
               class="card__image"
             />
-            <h3 class="card__title">Lago di Braies</h3>
-            <button type="button" class="card__like-button">
-              <img
-                src="./images/like-button__image.svg"
-                alt="Like button symbol"
-                class="card__like-button-image"
-              />
-            </button>
+            <div class="card__info">
+              <h3 class="card__title">Lago di Braies</h3>
+              <button type="button" class="card__like-button">
+                <img
+                  src="./images/like-button__image.svg"
+                  alt="Like button symbol"
+                  class="card__like-button-image"
+                />
+              </button>
+            </div>
           </article>
         </section>
       </main>
@@ -145,10 +157,20 @@
               alt="Close Icon"
             />
           </button>
-          <h3 class="popup__title">Edit Profile</h3>
-          <fieldset>
-            <input type="text" name="name" placeholder="Name" />
-            <input type="text" name="title" placeholder="Title" />
+          <h3 class="popup__title">Edit profile</h3>
+          <fieldset class="popup__form-field">
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              class="popup__input"
+            />
+            <input
+              type="text"
+              name="title"
+              placeholder="Title"
+              class="popup__input"
+            />
             <button type="submit" class="popup__submit-button">Save</button>
           </fieldset>
         </form>
