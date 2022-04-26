@@ -10,7 +10,7 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.popup_is-opened {
+.popup_is_opened {
   display: flex;
 }
 
