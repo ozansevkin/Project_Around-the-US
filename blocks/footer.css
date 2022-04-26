@@ -3,7 +3,24 @@
 }
 
 .footer__copyright {
+  margin: 0;
   color: #545454;
   font-size: 18px;
   line-height: 1.22;
+}
+
+@media screen and (max-width: 450px) {
+  .footer {
+    max-width: 95%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .footer {
+    margin-top: 50px;
+  }
+
+  .footer__copyright {
+    font-size: 14px;
+  }
 }

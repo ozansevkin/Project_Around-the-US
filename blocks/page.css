@@ -11,3 +11,15 @@
   line-height: 1.2;
   color: #fff;
 }
+
+@media screen and (max-width: 1000px) {
+  .page__content {
+    max-width: 95%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .page__content {
+    margin: 28px auto 36px auto;
+  }
+}

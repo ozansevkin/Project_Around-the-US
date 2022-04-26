@@ -10,3 +10,20 @@
   opacity: 0.7;
   margin: 40px 0;
 }
+
+@media screen and (max-width: 1000px) {
+  .header__logo {
+    margin-left: 2%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .header__logo {
+    max-width: 126px;
+    margin-left: 3%;
+  }
+
+  .header__line {
+    margin: 32px 0 42px 0;
+  }
+}
