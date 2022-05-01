@@ -12,13 +12,17 @@
   color: #fff;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 900px) {
   .page__content {
-    max-width: 95%;
+    max-width: 92%;
   }
 }
 
 @media screen and (max-width: 450px) {
+  .page__content {
+    max-width: 88.125%;
+  }
+
   .page__content {
     margin: 28px auto 36px auto;
   }

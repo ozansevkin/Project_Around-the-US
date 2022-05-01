@@ -3,3 +3,9 @@
   flex-direction: column;
   row-gap: 50px;
 }
+
+@media screen and (max-width: 450px) {
+  .main {
+    row-gap: 36px;
+  }
+}

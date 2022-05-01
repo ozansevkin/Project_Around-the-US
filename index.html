@@ -11,7 +11,6 @@
     <div class="page__content">
       <header class="header">
         <img src="./images/logo.svg" alt="logo" class="header__logo" />
-        <div class="header__line"></div>
       </header>
       <main class="main">
         <section class="profile">
@@ -20,24 +19,20 @@
             alt="Profile Photo"
             class="profile__avatar"
           />
-          <article class="profile__info">
-            <h3 class="profile__name">Jacques Cosuteau</h3>
-            <button type="button" class="profile__edit-button">
-              <img
-                src="./images/profile__edit-button-image.svg"
-                alt="Edit button symbol"
-                class="profile__edit-button-image"
-              />
-            </button>
+          <div class="profile__info">
+            <h1 class="profile__name">Jacques Cosuteau</h1>
+            <button
+              aria-label="edit"
+              type="button"
+              class="profile__edit-button"
+            ></button>
             <p class="profile__title">Explorer</p>
-          </article>
-          <button type="button" class="profile__add-button">
-            <img
-              src="./images/profile__add-button-image.svg"
-              alt="Add button symbol"
-              class="profile__add-button-image"
-            />
-          </button>
+          </div>
+          <button
+            aria-label="add"
+            type="button"
+            class="profile__add-button"
+          ></button>
         </section>
         <section class="cards">
           <article class="card">
@@ -47,14 +42,12 @@
               class="card__image"
             />
             <div class="card__info">
-              <h3 class="card__title">Yosemite Valley</h3>
-              <button type="button" class="card__like-button">
-                <img
-                  src="./images/like-button__image.svg"
-                  alt="Like button symbol"
-                  class="card__like-button-image"
-                />
-              </button>
+              <h2 class="card__title">Yosemite Valley</h2>
+              <button
+                aria-label="like"
+                type="button"
+                class="card__like-button"
+              ></button>
             </div>
           </article>
           <article class="card">
@@ -64,14 +57,12 @@
               class="card__image"
             />
             <div class="card__info">
-              <h3 class="card__title">Lake Louise</h3>
-              <button type="button" class="card__like-button">
-                <img
-                  src="./images/like-button__image.svg"
-                  alt="Like button symbol"
-                  class="card__like-button-image"
-                />
-              </button>
+              <h2 class="card__title">Lake Louise</h2>
+              <button
+                aria-label="like"
+                type="button"
+                class="card__like-button"
+              ></button>
             </div>
           </article>
           <article class="card">
@@ -81,14 +72,12 @@
               class="card__image"
             />
             <div class="card__info">
-              <h3 class="card__title">Bald Mountains</h3>
-              <button type="button" class="card__like-button">
-                <img
-                  src="./images/like-button__image.svg"
-                  alt="Like button symbol"
-                  class="card__like-button-image"
-                />
-              </button>
+              <h2 class="card__title">Bald Mountains</h2>
+              <button
+                aria-label="like"
+                type="button"
+                class="card__like-button"
+              ></button>
             </div>
           </article>
           <article class="card">
@@ -98,14 +87,12 @@
               class="card__image"
             />
             <div class="card__info">
-              <h3 class="card__title">Latemar</h3>
-              <button type="button" class="card__like-button">
-                <img
-                  src="./images/like-button__image.svg"
-                  alt="Like button symbol"
-                  class="card__like-button-image"
-                />
-              </button>
+              <h2 class="card__title">Latemar</h2>
+              <button
+                aria-label="like"
+                type="button"
+                class="card__like-button"
+              ></button>
             </div>
           </article>
           <article class="card">
@@ -115,14 +102,12 @@
               class="card__image"
             />
             <div class="card__info">
-              <h3 class="card__title">Vanoise National Park</h3>
-              <button type="button" class="card__like-button">
-                <img
-                  src="./images/like-button__image.svg"
-                  alt="Like button symbol"
-                  class="card__like-button-image"
-                />
-              </button>
+              <h2 class="card__title">Vanoise National Park</h2>
+              <button
+                aria-label="like"
+                type="button"
+                class="card__like-button"
+              ></button>
             </div>
           </article>
           <article class="card">
@@ -132,14 +117,12 @@
               class="card__image"
             />
             <div class="card__info">
-              <h3 class="card__title">Lago di Braies</h3>
-              <button type="button" class="card__like-button">
-                <img
-                  src="./images/like-button__image.svg"
-                  alt="Like button symbol"
-                  class="card__like-button-image"
-                />
-              </button>
+              <h2 class="card__title">Lago di Braies</h2>
+              <button
+                aria-label="like"
+                type="button"
+                class="card__like-button"
+              ></button>
             </div>
           </article>
         </section>
@@ -150,30 +133,31 @@
         </p>
       </footer>
       <div class="popup">
-        <form class="popup__container">
-          <button class="popup__close-button">
-            <img
-              src="./images/popup__close-button-image.svg"
-              alt="Close Icon"
-            />
-          </button>
-          <h3 class="popup__title">Edit profile</h3>
-          <fieldset class="popup__form-field">
-            <input
-              type="text"
-              name="name"
-              placeholder="Name"
-              class="popup__input popup__input_type_name"
-            />
-            <input
-              type="text"
-              name="title"
-              placeholder="Title"
-              class="popup__input popup__input_type_title"
-            />
-            <button type="submit" class="popup__submit-button">Save</button>
-          </fieldset>
-        </form>
+        <div class="popup__container">
+          <button
+            aria-label="close"
+            type="button"
+            class="popup__close-button"
+          ></button>
+          <form class="popup__form">
+            <h2 class="popup__title">Edit profile</h2>
+            <fieldset class="popup__form-field">
+              <input
+                type="text"
+                name="name"
+                placeholder="Name"
+                class="popup__input popup__input_type_name"
+              />
+              <input
+                type="text"
+                name="title"
+                placeholder="Title"
+                class="popup__input popup__input_type_title"
+              />
+              <button type="submit" class="popup__submit-button">Save</button>
+            </fieldset>
+          </form>
+        </div>
       </div>
     </div>
     <script src="./scripts/index.js"></script>
