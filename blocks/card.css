@@ -19,7 +19,7 @@
 
 .card__title {
   margin: 0;
-  font-size: s24px;
+  font-size: 24px;
   line-height: 1.21;
   font-weight: 900;
   text-overflow: ellipsis;
@@ -34,7 +34,8 @@
   background-color: inherit;
   background-image: url("../images/like-button__icon.svg");
   background-repeat: no-repeat;
-  background-image: center;
+  background-position: center;
+  cursor: pointer;
 }
 
 .card__like-button:hover {

@@ -13,14 +13,8 @@
 }
 
 @media screen and (max-width: 900px) {
-  .header::after {
-    position: relative;
-    left: calc(-50vw + 50%);
-    width: 100vw;
-  }
-
   .header__logo {
-    margin-left: 2%;
+    margin-left: 4%;
   }
 }
 
@@ -31,6 +25,6 @@
 
   .header__logo {
     max-width: 126px;
-    margin-left: 8px;
+    margin-left: 8.4%;
   }
 }

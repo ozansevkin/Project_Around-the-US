@@ -9,9 +9,15 @@
   line-height: 1.22;
 }
 
+@media screen and (max-width: 950px) {
+  .footer {
+    margin: 67px 4% 0;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .footer {
-    margin-top: 50px;
+    margin: 50px 6% 0;
   }
 
   .footer__copyright {
