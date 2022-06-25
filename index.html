@@ -35,96 +35,24 @@
           ></button>
         </section>
         <section class="cards">
-          <article class="card">
-            <img
-              src="./images/grid_photo_1.jpg"
-              alt="A photo of Yosemite Valley"
-              class="card__image"
-            />
-            <div class="card__info">
-              <h2 class="card__title">Yosemite Valley</h2>
+          <template id="card-template">
+            <article class="card">
               <button
-                aria-label="like"
+                aria-label="delete"
                 type="button"
-                class="card__like-button"
+                class="card__delete-button"
               ></button>
-            </div>
-          </article>
-          <article class="card">
-            <img
-              src="./images/grid_photo_2.jpg"
-              alt="A photo of Lake Louise"
-              class="card__image"
-            />
-            <div class="card__info">
-              <h2 class="card__title">Lake Louise</h2>
-              <button
-                aria-label="like"
-                type="button"
-                class="card__like-button"
-              ></button>
-            </div>
-          </article>
-          <article class="card">
-            <img
-              src="./images/grid_photo_3.jpg"
-              alt="A photo of Bald Mountains"
-              class="card__image"
-            />
-            <div class="card__info">
-              <h2 class="card__title">Bald Mountains</h2>
-              <button
-                aria-label="like"
-                type="button"
-                class="card__like-button"
-              ></button>
-            </div>
-          </article>
-          <article class="card">
-            <img
-              src="./images/grid_photo_4.jpg"
-              alt="A photo of Latemar"
-              class="card__image"
-            />
-            <div class="card__info">
-              <h2 class="card__title">Latemar</h2>
-              <button
-                aria-label="like"
-                type="button"
-                class="card__like-button"
-              ></button>
-            </div>
-          </article>
-          <article class="card">
-            <img
-              src="./images/grid_photo_5.jpg"
-              alt="A photo of Vanoise National Park"
-              class="card__image"
-            />
-            <div class="card__info">
-              <h2 class="card__title">Vanoise National Park</h2>
-              <button
-                aria-label="like"
-                type="button"
-                class="card__like-button"
-              ></button>
-            </div>
-          </article>
-          <article class="card">
-            <img
-              src="./images/grid_photo_6.jpg"
-              alt="A photo of Lago di Braies"
-              class="card__image"
-            />
-            <div class="card__info">
-              <h2 class="card__title">Lago di Braies</h2>
-              <button
-                aria-label="like"
-                type="button"
-                class="card__like-button"
-              ></button>
-            </div>
-          </article>
+              <img src="#" alt="#" class="card__image" />
+              <div class="card__info">
+                <h2 class="card__title">#</h2>
+                <button
+                  aria-label="like"
+                  type="button"
+                  class="card__like-button"
+                ></button>
+              </div>
+            </article>
+          </template>
         </section>
       </main>
       <footer class="footer">
@@ -132,7 +60,7 @@
           &copy; 2022 Around the U.S. - Ozan Sevkin
         </p>
       </footer>
-      <div class="popup">
+      <div class="popup popup_type_edit">
         <div class="popup__container">
           <button
             aria-label="close"
@@ -157,6 +85,46 @@
               <button type="submit" class="popup__submit-button">Save</button>
             </fieldset>
           </form>
+        </div>
+      </div>
+
+      <div class="popup popup_type_add">
+        <div class="popup__container">
+          <button
+            aria-label="close"
+            type="button"
+            class="popup__close-button"
+          ></button>
+          <form class="popup__form">
+            <h2 class="popup__title">New Place</h2>
+            <fieldset class="popup__form-field">
+              <input
+                type="text"
+                name="title"
+                placeholder="Title"
+                class="popup__input"
+              />
+              <input
+                type="text"
+                name="link"
+                placeholder="Image URL"
+                class="popup__input"
+              />
+              <button type="submit" class="popup__submit-button">Create</button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup popup_type_image">
+        <div class="popup__image-container">
+          <button
+            aria-label="close"
+            type="button"
+            class="popup__close-button"
+          ></button>
+          <img class="popup__image" src="#" alt="#" />
+          <figcaption class="popup__subtitle">#<figcaption/>
         </div>
       </div>
     </div>
