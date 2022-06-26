@@ -1,27 +1,44 @@
 // 1. Variable Declarations
-const profileEditButton = document.querySelector(".profile__edit-button");
-const profileAddButton = document.querySelector(".profile__add-button");
-
 const profileName = document.querySelector(".profile__name");
 const profileTitle = document.querySelector(".profile__title");
 
-const popupEdit = document.querySelector(".popup_type_edit");
-const popupAdd = document.querySelector(".popup_type_add");
-const popupImage = document.querySelector(".popup_type_image");
+const editProfileButton = document.querySelector(".profile__edit-button");
+const addCardButton = document.querySelector(".profile__add-button");
 
-const popupEditForm = popupEdit.querySelector(".popup__container");
-const popupEditInputName = popupEdit.querySelector(".popup__input_type_name");
-const popupEditInputTitle = popupEdit.querySelector(".popup__input_type_title");
-const popupEditSubmitButton = popupEdit.querySelector(".popup__submit-button");
-const popupEditCloseButton = popupEdit.querySelector(".popup__close-button");
+const editProfilePopup = document.querySelector(".popup_type_edit");
+const addCardPopup = document.querySelector(".popup_type_add");
+const cardImagePopup = document.querySelector(".popup_type_image");
 
-const popupAddForm = popupAdd.querySelector(".popup__container");
-const popupAddSubmitButton = popupAdd.querySelector(".popup__submit-button");
-const popupAddCloseButton = popupAdd.querySelector(".popup__close-button");
+const editProfileForm = editProfilePopup.querySelector(".popup__container");
+const editProfileFormInputName = editProfileForm.querySelector(
+  ".popup__input_type_name"
+);
+const editProfileFormInputTitle = editProfileForm.querySelector(
+  ".popup__input_type_title"
+);
+const editProfileFormSubmitButton = editProfileForm.querySelector(
+  ".popup__submit-button"
+);
+const editProfilePopupCloseButton = editProfilePopup.querySelector(
+  ".popup__close-button"
+);
 
-const popupImageEl = popupImage.querySelector(".popup__image");
-const popupImageSub = popupImage.querySelector(".popup__subtitle");
-const popupImageCloseButton = popupImage.querySelector(".popup__close-button");
+const addCardForm = addCardPopup.querySelector(".popup__container");
+const addCardFormSubmitButton = addCardForm.querySelector(
+  ".popup__submit-button"
+);
+const addCardPopupCloseButton = addCardPopup.querySelector(
+  ".popup__close-button"
+);
+
+const cardImagePopupImage = cardImagePopup.querySelector(".popup__image");
+const cardImagePopupSubtitle = cardImagePopup.querySelector(".popup__subtitle");
+const cardImagePopupCloseButton = cardImagePopup.querySelector(
+  ".popup__close-button"
+);
+
+const cardsContainer = document.querySelector(".cards");
+const cardTemplate = document.querySelector("#card-template").content;
 
 // Cards Array
 const initialCards = [
@@ -49,107 +66,162 @@ const initialCards = [
 ];
 
 // 2. Function Declarations
-function getCardElement(data) {
-  const cardTemplate = document.querySelector("#card-template").content;
-  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
 
-  const cardTitle = cardElement.querySelector(".card__title");
-  const cardImage = cardElement.querySelector(".card__image");
-  const cardLikeButton = cardElement.querySelector(".card__like-button");
-  const cardDeleteButton = cardElement.querySelector(".card__delete-button");
+/**
+ * Creates a card
+ *
+ * @param {object} data card's title(string) and URL(string)
+ * @returns {object} card
+ */
+function createCard(data) {
+  const card = cardTemplate.querySelector(".card").cloneNode(true);
+
+  const cardTitle = card.querySelector(".card__title");
+  const cardImage = card.querySelector(".card__image");
+  const cardLikeButton = card.querySelector(".card__like-button");
+  const cardDeleteButton = card.querySelector(".card__delete-button");
 
   cardTitle.textContent = data.name;
   cardImage.src = data.link;
   cardImage.alt = data.name;
-  cardLikeButtonEventListener(cardLikeButton);
-  cardDeleteButtonEventListener(cardDeleteButton);
-  cardImageEventListener(cardImage);
+  listenCardLikeButtonClick(cardLikeButton);
+  listenCardDeleteButtonClick(cardDeleteButton);
+  listenCardImageClick(cardImage);
 
-  const cardsContainer = document.querySelector(".cards");
-  cardsContainer.append(cardElement);
+  return card;
 }
 
-function popupOpenHandler(popup) {
+/**
+ * Renders a card on the page
+ *
+ * @param {object} card
+ */
+function renderCard(card) {
+  cardsContainer.prepend(card);
+}
+
+/**
+ * Opens a popup
+ *
+ * @param {object} popup
+ */
+function openPopup(popup) {
   popup.classList.add("popup_opened");
 }
 
-function popupCloseHandler(popup) {
+/**
+ * Closes a popup
+ *
+ * @param {object} popup
+ */
+function closePopup(popup) {
   popup.classList.remove("popup_opened");
 }
 
-function popupEditSubmitHandler(evt) {
+/**
+ * Handles the changes after the edit profile form submitted
+ *
+ * @param {object} evt
+ */
+function handleEditProfileFormSubmit(evt) {
   evt.preventDefault();
 
-  profileName.textContent = popupEditInputName.value;
-  profileTitle.textContent = popupEditInputTitle.value;
+  profileName.textContent = editProfileFormInputName.value;
+  profileTitle.textContent = editProfileFormInputTitle.value;
 
-  popupEdit.classList.remove("popup_opened");
+  closePopup(editProfilePopup);
 }
 
-function popupAddSubmitHandler(evt) {
+/**
+ * Fills edit profile form with current profile info
+ */
+function fillEditProfileForm() {
+  editProfileFormInputName.value = profileName.textContent;
+  editProfileFormInputTitle.value = profileTitle.textContent;
+}
+
+/**
+ * Handles the changes after the add card form submitted
+ *
+ * @param {object} evt
+ */
+function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
 
   const title = evt.target.title.value;
   const link = evt.target.link.value;
 
-  getCardElement({
+  const newCard = createCard({
     name: title,
     link: link,
   });
 
-  popupCloseHandler(popupAdd);
-
-  evt.target.title.value = "";
-  evt.target.link.value = "";
+  renderCard(newCard);
+  closePopup(addCardPopup);
+  addCardForm.reset();
 }
 
-function cardLikeButtonEventListener(cardLikeButton) {
+/**
+ * Adds an event listener for card like button and defines its callback function
+ *
+ * @param {object} cardLikeButton
+ */
+function listenCardLikeButtonClick(cardLikeButton) {
   cardLikeButton.addEventListener("click", () => {
     cardLikeButton.classList.toggle("card__like-button_clicked");
   });
 }
 
-function cardDeleteButtonEventListener(cardDeleteButton) {
+/**
+ * Adds an event listener for card delete button and defines its callback function
+ *
+ * @param {object} cardDeleteButton
+ */
+function listenCardDeleteButtonClick(cardDeleteButton) {
   cardDeleteButton.addEventListener("click", () => {
-    cardDeleteButton.parentElement.remove();
+    cardDeleteButton.closest(".card").remove();
   });
 }
 
-function cardImageEventListener(cardImage) {
+/**
+ * Adds an event listener for card image and defines its callback function
+ *
+ * @param {object} cardImage
+ */
+function listenCardImageClick(cardImage) {
   cardImage.addEventListener("click", () => {
-    popupImageEl.src = cardImage.src;
-    popupImageEl.alt = cardImage.alt;
-    popupImageSub.textContent = cardImage.alt;
-    popupImage.classList.add("popup_opened");
+    cardImagePopupImage.src = cardImage.src;
+    cardImagePopupImage.alt = cardImage.alt;
+    cardImagePopupSubtitle.textContent = cardImage.alt;
+    openPopup(cardImagePopup);
   });
 }
 
 // 3. Event Listeners and function calls
 
 // Rendering Cards
-initialCards.forEach((initialCard) => getCardElement(initialCard));
+initialCards.forEach((initialCard) => renderCard(createCard(initialCard)));
 
-// Button Event Listeners
-profileEditButton.addEventListener("click", () => {
-  popupEditInputName.value = profileName.textContent;
-  popupEditInputTitle.value = profileTitle.textContent;
-  popupOpenHandler(popupEdit);
+// Click Event Listeners
+editProfileButton.addEventListener("click", () => {
+  fillEditProfileForm();
+  openPopup(editProfilePopup);
 });
 
-profileAddButton.addEventListener("click", () => popupOpenHandler(popupAdd));
+addCardButton.addEventListener("click", () => openPopup(addCardPopup));
 
-popupEditCloseButton.addEventListener("click", () =>
-  popupCloseHandler(popupEdit)
+editProfilePopupCloseButton.addEventListener("click", () =>
+  closePopup(editProfilePopup)
 );
 
-popupAddCloseButton.addEventListener("click", () =>
-  popupCloseHandler(popupAdd)
+addCardPopupCloseButton.addEventListener("click", () =>
+  closePopup(addCardPopup)
 );
 
-popupImageCloseButton.addEventListener("click", () =>
-  popupCloseHandler(popupImage)
+cardImagePopupCloseButton.addEventListener("click", () =>
+  closePopup(cardImagePopup)
 );
 
 // Submit Event Listeners
-popupEditForm.addEventListener("submit", popupEditSubmitHandler);
-popupAddForm.addEventListener("submit", popupAddSubmitHandler);
+editProfileForm.addEventListener("submit", handleEditProfileFormSubmit);
+addCardForm.addEventListener("submit", handleAddCardFormSubmit);

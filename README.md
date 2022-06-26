@@ -1,6 +1,6 @@
-# Project 4: Around The U.S.
+# Project: Around The U.S.
 
-[![Around The U.S.][product-screenshot]](https://ozansevkin.github.io/web_project_4/)
+[![Around The U.S.][product-screenshot]](https://ozansevkin.github.io/se_project_aroundtheus/)
 
 ## Overview
 
@@ -18,7 +18,7 @@
 
 - BEM methodology with flat file structure has been used.
 
-- [A live version](https://ozansevkin.github.io/web_project_4/) of the main branch deployed to github pages.
+- [A live version](https://ozansevkin.github.io/se_project_aroundtheus/) of the main branch deployed to github pages.
 
 ### Built with
 
@@ -30,18 +30,22 @@
 
 ### Live version of the project
 
-[Click here to view the live version](https://ozansevkin.github.io/web_project_4/)
+[Click here to view the live version](https://ozansevkin.github.io/se_project_aroundtheus/)
 
 ## Roadmap
 
-- [ ] Make like button functional
-- [ ] Make add button functional
+- [x] Make like button functional
+- [x] Make add button functional
+- [x] Add delete card button and make it functional
+- [x] Add card image popup
+- [x] Change hard coded cards to html template
+- [x] Add smooth transition to all popups
 
 ## Contact
 
 Ozan Sevkin - [@ozansevkin](https://twitter.com/ozansevkin) - [linkedin] - sevkinozan@gmail.com
 
-Project Link: [https://github.com/ozansevkin/web_project_4](https://github.com/ozansevkin/web_project_4)
+Project Link: [https://github.com/ozansevkin/se_project_aroundtheus](https://github.com/ozansevkin/se_project_aroundtheus)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
