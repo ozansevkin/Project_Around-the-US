@@ -9,24 +9,18 @@ const editProfilePopup = document.querySelector(".popup_type_edit");
 const addCardPopup = document.querySelector(".popup_type_add");
 const cardImagePopup = document.querySelector(".popup_type_image");
 
-const editProfileForm = editProfilePopup.querySelector(".popup__container");
+const editProfileForm = editProfilePopup.querySelector(".popup__form");
 const editProfileFormInputName = editProfileForm.querySelector(
   ".popup__input_type_name"
 );
 const editProfileFormInputTitle = editProfileForm.querySelector(
   ".popup__input_type_title"
 );
-const editProfileFormSubmitButton = editProfileForm.querySelector(
-  ".popup__submit-button"
-);
 const editProfilePopupCloseButton = editProfilePopup.querySelector(
   ".popup__close-button"
 );
 
-const addCardForm = addCardPopup.querySelector(".popup__container");
-const addCardFormSubmitButton = addCardForm.querySelector(
-  ".popup__submit-button"
-);
+const addCardForm = addCardPopup.querySelector(".popup__form");
 const addCardPopupCloseButton = addCardPopup.querySelector(
   ".popup__close-button"
 );
