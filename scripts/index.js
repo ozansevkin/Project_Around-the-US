@@ -16,6 +16,9 @@ const editProfileFormInputName = editProfileForm.querySelector(
 const editProfileFormInputTitle = editProfileForm.querySelector(
   ".popup__input_type_title"
 );
+const editProfileFormSubmitButton = editProfileForm.querySelector(
+  ".popup__submit-button"
+);
 const editProfilePopupCloseButton = editProfilePopup.querySelector(
   ".popup__close-button"
 );
@@ -191,6 +194,32 @@ function listenCardImageClick(cardImage) {
   });
 }
 
+// Popup Close
+function enablePopupClose() {
+  const popupList = Array.from(document.querySelectorAll(".popup"));
+
+  popupList.forEach((popup) => {
+    addOverlayCloseEventListener(popup);
+    addEscCloseEventListener(popup);
+  });
+}
+
+function addOverlayCloseEventListener(popup) {
+  popup.addEventListener("mousedown", (evt) => {
+    if (evt.target === evt.currentTarget) {
+      closePopup(popup);
+    }
+  });
+}
+
+function addEscCloseEventListener(popup) {
+  popup.addEventListener("keydown", (evt) => {
+    if (evt.key === "Escape") {
+      closePopup(popup);
+    }
+  });
+}
+
 // 3. Event Listeners and function calls
 
 // Rendering Cards
@@ -219,3 +248,6 @@ cardImagePopupCloseButton.addEventListener("click", () =>
 // Submit Event Listeners
 editProfileForm.addEventListener("submit", handleEditProfileFormSubmit);
 addCardForm.addEventListener("submit", handleAddCardFormSubmit);
+
+// Enable Popup Close
+enablePopupClose();
