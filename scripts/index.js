@@ -19,20 +19,11 @@ const editProfileFormInputTitle = editProfileForm.querySelector(
 const editProfileFormSubmitButton = editProfileForm.querySelector(
   ".popup__submit-button"
 );
-const editProfilePopupCloseButton = editProfilePopup.querySelector(
-  ".popup__close-button"
-);
 
 const addCardForm = addCardPopup.querySelector(".popup__form");
-const addCardPopupCloseButton = addCardPopup.querySelector(
-  ".popup__close-button"
-);
 
 const cardImagePopupImage = cardImagePopup.querySelector(".popup__image");
 const cardImagePopupSubtitle = cardImagePopup.querySelector(".popup__subtitle");
-const cardImagePopupCloseButton = cardImagePopup.querySelector(
-  ".popup__close-button"
-);
 
 const cardsContainer = document.querySelector(".cards");
 const cardTemplate = document.querySelector("#card-template").content;
@@ -104,6 +95,8 @@ function renderCard(card) {
  */
 function openPopup(popup) {
   popup.classList.add("popup_opened");
+  document.addEventListener("keydown", closeByEscape);
+  disableSubmitButton(popup);
 }
 
 /**
@@ -113,6 +106,7 @@ function openPopup(popup) {
  */
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  document.removeEventListener("keydown", closeByEscape);
 }
 
 /**
@@ -200,7 +194,7 @@ function enablePopupClose() {
 
   popupList.forEach((popup) => {
     addOverlayCloseEventListener(popup);
-    addEscCloseEventListener(popup);
+    addCloseButtonEventListener(popup);
   });
 }
 
@@ -212,12 +206,26 @@ function addOverlayCloseEventListener(popup) {
   });
 }
 
-function addEscCloseEventListener(popup) {
-  popup.addEventListener("keydown", (evt) => {
-    if (evt.key === "Escape") {
+function addCloseButtonEventListener(popup) {
+  popup.addEventListener("click", (evt) => {
+    if (evt.target.classList.contains("popup__close-button")) {
       closePopup(popup);
     }
   });
+}
+
+function closeByEscape(evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(".popup_opened");
+
+    closePopup(openedPopup);
+  }
+}
+
+function disableSubmitButton(popup) {
+  const submitButton = popup.querySelector(".popup__submit-button");
+  submitButton.classList.add("popup__submit-button_inactive");
+  submitButton.setAttribute("disabled", true);
 }
 
 // 3. Event Listeners and function calls
@@ -232,18 +240,6 @@ editProfileButton.addEventListener("click", () => {
 });
 
 addCardButton.addEventListener("click", () => openPopup(addCardPopup));
-
-editProfilePopupCloseButton.addEventListener("click", () =>
-  closePopup(editProfilePopup)
-);
-
-addCardPopupCloseButton.addEventListener("click", () =>
-  closePopup(addCardPopup)
-);
-
-cardImagePopupCloseButton.addEventListener("click", () =>
-  closePopup(cardImagePopup)
-);
 
 // Submit Event Listeners
 editProfileForm.addEventListener("submit", handleEditProfileFormSubmit);
