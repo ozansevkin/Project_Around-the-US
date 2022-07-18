@@ -40,6 +40,9 @@
 - [x] Add card image popup
 - [x] Change hard coded cards to html template
 - [x] Add smooth transition to all popups
+- [x] Validate all forms with js
+- [x] Add esc and overlay close
+- [ ] Reset validation with modular js
 
 ## Contact
 
