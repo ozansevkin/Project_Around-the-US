@@ -96,7 +96,6 @@ function renderCard(card) {
 function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", closeByEscape);
-  disableSubmitButton(popup);
 }
 
 /**
@@ -150,6 +149,7 @@ function handleAddCardFormSubmit(evt) {
   renderCard(newCard);
   closePopup(addCardPopup);
   addCardForm.reset();
+  disableSubmitButton(addCardPopup);
 }
 
 /**
@@ -188,7 +188,9 @@ function listenCardImageClick(cardImage) {
   });
 }
 
-// Popup Close
+/**
+ * Enables popup close functions for all popups
+ */
 function enablePopupClose() {
   const popupList = Array.from(document.querySelectorAll(".popup"));
 
@@ -198,6 +200,11 @@ function enablePopupClose() {
   });
 }
 
+/**
+ * Adds close by clicking overlay functionality to popup
+ *
+ * @param {object} popup
+ */
 function addOverlayCloseEventListener(popup) {
   popup.addEventListener("mousedown", (evt) => {
     if (evt.target === evt.currentTarget) {
@@ -206,6 +213,11 @@ function addOverlayCloseEventListener(popup) {
   });
 }
 
+/**
+ * Adds close by clicking close button functionality to popup
+ *
+ * @param {object} popup
+ */
 function addCloseButtonEventListener(popup) {
   popup.addEventListener("click", (evt) => {
     if (evt.target.classList.contains("popup__close-button")) {
@@ -214,6 +226,11 @@ function addCloseButtonEventListener(popup) {
   });
 }
 
+/**
+ * Closes already opened popup by Escape key
+ *
+ * @param {object} evt
+ */
 function closeByEscape(evt) {
   if (evt.key === "Escape") {
     const openedPopup = document.querySelector(".popup_opened");
@@ -222,6 +239,11 @@ function closeByEscape(evt) {
   }
 }
 
+/**
+ * Disables submit button of the popup
+ *
+ * @param {object} popup
+ */
 function disableSubmitButton(popup) {
   const submitButton = popup.querySelector(".popup__submit-button");
   submitButton.classList.add("popup__submit-button_inactive");
