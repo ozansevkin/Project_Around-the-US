@@ -1,13 +1,14 @@
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+import { closePopup } from "./utils.js";
+export { editProfilePopup, addCardPopup, fillEditProfileForm };
+
 // 1. Variable Declarations
 const profileName = document.querySelector(".profile__name");
 const profileTitle = document.querySelector(".profile__title");
 
-const editProfileButton = document.querySelector(".profile__edit-button");
-const addCardButton = document.querySelector(".profile__add-button");
-
 const editProfilePopup = document.querySelector(".popup_type_edit");
 const addCardPopup = document.querySelector(".popup_type_add");
-const cardImagePopup = document.querySelector(".popup_type_image");
 
 const editProfileForm = editProfilePopup.querySelector(".popup__form");
 const editProfileFormInputName = editProfileForm.querySelector(
@@ -22,11 +23,18 @@ const editProfileFormSubmitButton = editProfileForm.querySelector(
 
 const addCardForm = addCardPopup.querySelector(".popup__form");
 
-const cardImagePopupImage = cardImagePopup.querySelector(".popup__image");
-const cardImagePopupSubtitle = cardImagePopup.querySelector(".popup__subtitle");
-
 const cardsContainer = document.querySelector(".cards");
-const cardTemplate = document.querySelector("#card-template").content;
+const cardTemplateSelector = "#card-template";
+
+// Settings for form validation
+const settings = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__submit-button",
+  inactiveButtonClass: "popup__submit-button_inactive",
+  inputErrorClass: "popup__input_error",
+  errorClass: "popup__input-error-text_active",
+};
 
 // Cards Array
 const initialCards = [
@@ -56,56 +64,12 @@ const initialCards = [
 // 2. Function Declarations
 
 /**
- * Creates a card
- *
- * @param {object} data card's title(string) and URL(string)
- * @returns {object} card
- */
-function createCard(data) {
-  const card = cardTemplate.querySelector(".card").cloneNode(true);
-
-  const cardTitle = card.querySelector(".card__title");
-  const cardImage = card.querySelector(".card__image");
-  const cardLikeButton = card.querySelector(".card__like-button");
-  const cardDeleteButton = card.querySelector(".card__delete-button");
-
-  cardTitle.textContent = data.name;
-  cardImage.src = data.link;
-  cardImage.alt = data.name;
-  listenCardLikeButtonClick(cardLikeButton);
-  listenCardDeleteButtonClick(cardDeleteButton);
-  listenCardImageClick(cardImage);
-
-  return card;
-}
-
-/**
  * Renders a card on the page
  *
  * @param {object} card
  */
 function renderCard(card) {
   cardsContainer.prepend(card);
-}
-
-/**
- * Opens a popup
- *
- * @param {object} popup
- */
-function openPopup(popup) {
-  popup.classList.add("popup_opened");
-  document.addEventListener("keydown", closeByEscape);
-}
-
-/**
- * Closes a popup
- *
- * @param {object} popup
- */
-function closePopup(popup) {
-  popup.classList.remove("popup_opened");
-  document.removeEventListener("keydown", closeByEscape);
 }
 
 /**
@@ -141,10 +105,13 @@ function handleAddCardFormSubmit(evt) {
   const title = evt.target.title.value;
   const link = evt.target.link.value;
 
-  const newCard = createCard({
-    name: title,
-    link: link,
-  });
+  const newCard = new Card(
+    {
+      name: title,
+      link: link,
+    },
+    cardTemplateSelector
+  ).createCard();
 
   renderCard(newCard);
   closePopup(addCardPopup);
@@ -153,90 +120,19 @@ function handleAddCardFormSubmit(evt) {
 }
 
 /**
- * Adds an event listener for card like button and defines its callback function
+ * Enables form validation for all forms
  *
- * @param {object} cardLikeButton
+ * @param {object} settings
  */
-function listenCardLikeButtonClick(cardLikeButton) {
-  cardLikeButton.addEventListener("click", () => {
-    cardLikeButton.classList.toggle("card__like-button_clicked");
+function enableValidation(settings) {
+  const formList = Array.from(document.querySelectorAll(settings.formSelector));
+
+  let formValidator = [];
+
+  formList.forEach((formElement, index) => {
+    formValidator[index] = new FormValidator(settings, formElement);
+    formValidator[index].enableValidation();
   });
-}
-
-/**
- * Adds an event listener for card delete button and defines its callback function
- *
- * @param {object} cardDeleteButton
- */
-function listenCardDeleteButtonClick(cardDeleteButton) {
-  cardDeleteButton.addEventListener("click", () => {
-    cardDeleteButton.closest(".card").remove();
-  });
-}
-
-/**
- * Adds an event listener for card image and defines its callback function
- *
- * @param {object} cardImage
- */
-function listenCardImageClick(cardImage) {
-  cardImage.addEventListener("click", () => {
-    cardImagePopupImage.src = cardImage.src;
-    cardImagePopupImage.alt = cardImage.alt;
-    cardImagePopupSubtitle.textContent = cardImage.alt;
-    openPopup(cardImagePopup);
-  });
-}
-
-/**
- * Enables popup close functions for all popups
- */
-function enablePopupClose() {
-  const popupList = Array.from(document.querySelectorAll(".popup"));
-
-  popupList.forEach((popup) => {
-    addOverlayCloseEventListener(popup);
-    addCloseButtonEventListener(popup);
-  });
-}
-
-/**
- * Adds close by clicking overlay functionality to popup
- *
- * @param {object} popup
- */
-function addOverlayCloseEventListener(popup) {
-  popup.addEventListener("mousedown", (evt) => {
-    if (evt.target === evt.currentTarget) {
-      closePopup(popup);
-    }
-  });
-}
-
-/**
- * Adds close by clicking close button functionality to popup
- *
- * @param {object} popup
- */
-function addCloseButtonEventListener(popup) {
-  popup.addEventListener("click", (evt) => {
-    if (evt.target.classList.contains("popup__close-button")) {
-      closePopup(popup);
-    }
-  });
-}
-
-/**
- * Closes already opened popup by Escape key
- *
- * @param {object} evt
- */
-function closeByEscape(evt) {
-  if (evt.key === "Escape") {
-    const openedPopup = document.querySelector(".popup_opened");
-
-    closePopup(openedPopup);
-  }
 }
 
 /**
@@ -253,19 +149,12 @@ function disableSubmitButton(popup) {
 // 3. Event Listeners and function calls
 
 // Rendering Cards
-initialCards.forEach((initialCard) => renderCard(createCard(initialCard)));
-
-// Click Event Listeners
-editProfileButton.addEventListener("click", () => {
-  fillEditProfileForm();
-  openPopup(editProfilePopup);
-});
-
-addCardButton.addEventListener("click", () => openPopup(addCardPopup));
+initialCards.forEach((initialCard) =>
+  renderCard(new Card(initialCard, cardTemplateSelector).createCard())
+);
 
 // Submit Event Listeners
 editProfileForm.addEventListener("submit", handleEditProfileFormSubmit);
 addCardForm.addEventListener("submit", handleAddCardFormSubmit);
 
-// Enable Popup Close
-enablePopupClose();
+enableValidation(settings);
