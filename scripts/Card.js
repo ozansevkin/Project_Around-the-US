@@ -52,10 +52,8 @@ export default class Card {
   }
 
   _deleteCard() {
-    const renderedCard = this._cardDeleteButton.closest(".card");
-
-    renderedCard.remove();
-    renderedCard = null;
+    this._card.remove();
+    this._card = null;
   }
 
   _listenCardImageClick() {
