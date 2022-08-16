@@ -1,11 +1,14 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
-import { closePopup } from "./utils.js";
+import { openPopup, closePopup } from "./utils.js";
 export { editProfilePopup, addCardPopup, fillEditProfileForm };
 
 // 1. Variable Declarations
 const profileName = document.querySelector(".profile__name");
 const profileTitle = document.querySelector(".profile__title");
+
+const editProfileButton = document.querySelector(".profile__edit-button");
+const addCardButton = document.querySelector(".profile__add-button");
 
 const editProfilePopup = document.querySelector(".popup_type_edit");
 const addCardPopup = document.querySelector(".popup_type_add");
@@ -17,9 +20,6 @@ const editProfileFormInputName = editProfileForm.querySelector(
 const editProfileFormInputTitle = editProfileForm.querySelector(
   ".popup__input_type_title"
 );
-const editProfileFormSubmitButton = editProfileForm.querySelector(
-  ".popup__submit-button"
-);
 
 const addCardForm = addCardPopup.querySelector(".popup__form");
 
@@ -28,13 +28,16 @@ const cardTemplateSelector = "#card-template";
 
 // Settings for form validation
 const settings = {
-  formSelector: ".popup__form",
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__submit-button",
   inactiveButtonClass: "popup__submit-button_inactive",
   inputErrorClass: "popup__input_error",
   errorClass: "popup__input-error-text_active",
 };
+
+// Form Validators
+const addCardFormValidator = new FormValidator(settings, addCardForm);
+const editProfileFormValidator = new FormValidator(settings, editProfileForm);
 
 // Cards Array
 const initialCards = [
@@ -73,6 +76,18 @@ function renderCard(card) {
 }
 
 /**
+ * Returns a new card element with given data
+ *
+ * @param {object} cardData
+ * @param {string} cardTemplateSelector
+ * @returns
+ */
+function createCard(cardData, cardTemplateSelector) {
+  const card = new Card(cardData, cardTemplateSelector);
+  return card.createCard();
+}
+
+/**
  * Handles the changes after the edit profile form submitted
  *
  * @param {object} evt
@@ -105,56 +120,47 @@ function handleAddCardFormSubmit(evt) {
   const title = evt.target.title.value;
   const link = evt.target.link.value;
 
-  const newCard = new Card(
+  const newCard = createCard(
     {
       name: title,
       link: link,
     },
     cardTemplateSelector
-  ).createCard();
+  );
 
   renderCard(newCard);
   closePopup(addCardPopup);
   addCardForm.reset();
-  disableSubmitButton(addCardPopup);
+  addCardFormValidator.toggleButtonState();
 }
 
 /**
- * Enables form validation for all forms
+ * Enables form validation for both forms
  *
- * @param {object} settings
  */
-function enableValidation(settings) {
-  const formList = Array.from(document.querySelectorAll(settings.formSelector));
-
-  let formValidator = [];
-
-  formList.forEach((formElement, index) => {
-    formValidator[index] = new FormValidator(settings, formElement);
-    formValidator[index].enableValidation();
-  });
-}
-
-/**
- * Disables submit button of the popup
- *
- * @param {object} popup
- */
-function disableSubmitButton(popup) {
-  const submitButton = popup.querySelector(".popup__submit-button");
-  submitButton.classList.add("popup__submit-button_inactive");
-  submitButton.setAttribute("disabled", true);
+function enableValidation() {
+  addCardFormValidator.enableValidation();
+  editProfileFormValidator.enableValidation();
 }
 
 // 3. Event Listeners and function calls
 
+// Click Event Listeners
+editProfileButton.addEventListener("click", () => {
+  fillEditProfileForm();
+  openPopup(editProfilePopup);
+});
+
+addCardButton.addEventListener("click", () => openPopup(addCardPopup));
+
 // Rendering Cards
 initialCards.forEach((initialCard) =>
-  renderCard(new Card(initialCard, cardTemplateSelector).createCard())
+  renderCard(createCard(initialCard, cardTemplateSelector))
 );
 
 // Submit Event Listeners
 editProfileForm.addEventListener("submit", handleEditProfileFormSubmit);
 addCardForm.addEventListener("submit", handleAddCardFormSubmit);
 
-enableValidation(settings);
+// Enable Form Validation
+enableValidation();

@@ -42,7 +42,7 @@
 - [x] Add smooth transition to all popups
 - [x] Validate all forms with js
 - [x] Add esc and overlay close
-- [ ] Reset validation with modular js
+- [x] Use OOP and modular js for cards and form validation
 
 ## Contact
 

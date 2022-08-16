@@ -1,23 +1,13 @@
-import {
-  editProfilePopup,
-  addCardPopup,
-  fillEditProfileForm,
-} from "./index.js";
-export { closePopup };
+export { openPopup, closePopup };
 
-// 1. Variable Declarations
-
-const editProfileButton = document.querySelector(".profile__edit-button");
-const addCardButton = document.querySelector(".profile__add-button");
-
-// 2. Function Declarations
+// 1. Function Declarations
 
 /**
  * Opens a popup
  *
  * @param {object} popup
  */
-export default function openPopup(popup) {
+function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", closeByEscape);
 }
@@ -83,15 +73,7 @@ function addCloseButtonEventListener(popup) {
   });
 }
 
-// 3. Event Listeners and function calls
-
-// Click Event Listeners
-editProfileButton.addEventListener("click", () => {
-  fillEditProfileForm();
-  openPopup(editProfilePopup);
-});
-
-addCardButton.addEventListener("click", () => openPopup(addCardPopup));
+// 2. Event Listeners and function calls
 
 // Enable Popup Close
 enablePopupClose();

@@ -1,40 +1,38 @@
-// Form Validation Function Declarations
 export default class FormValidator {
   constructor(settings, formElement) {
     this._settings = settings;
     this._formElement = formElement;
+    this._inputList = Array.from(
+      this._formElement.querySelectorAll(this._settings.inputSelector)
+    );
+    this._buttonElement = this._formElement.querySelector(
+      this._settings.submitButtonSelector
+    );
   }
 
   enableValidation() {
-    const inputList = Array.from(
-      this._formElement.querySelectorAll(this._settings.inputSelector)
-    );
-    const buttonElement = this._formElement.querySelector(
-      this._settings.submitButtonSelector
-    );
+    this.toggleButtonState();
 
-    this._toggleButtonState(inputList, buttonElement);
-
-    inputList.forEach((inputElement) => {
+    this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
-        this._toggleButtonState(inputList, buttonElement);
+        this.toggleButtonState();
       });
     });
   }
 
-  _toggleButtonState(inputList, buttonElement) {
-    if (this._hasInvalidInput(inputList)) {
-      buttonElement.classList.add(this._settings.inactiveButtonClass);
-      buttonElement.setAttribute("disabled", true);
+  toggleButtonState() {
+    if (this._hasInvalidInput()) {
+      this._buttonElement.classList.add(this._settings.inactiveButtonClass);
+      this._buttonElement.setAttribute("disabled", true);
     } else {
-      buttonElement.classList.remove(this._settings.inactiveButtonClass);
-      buttonElement.removeAttribute("disabled");
+      this._buttonElement.classList.remove(this._settings.inactiveButtonClass);
+      this._buttonElement.removeAttribute("disabled");
     }
   }
 
-  _hasInvalidInput(inputList) {
-    return inputList.some((input) => {
+  _hasInvalidInput() {
+    return this._inputList.some((input) => {
       return !input.validity.valid;
     });
   }
@@ -67,66 +65,3 @@ export default class FormValidator {
     errorElement.textContent = "";
   }
 }
-
-// function setEventListeners(formElement, settings) {
-//   const inputList = Array.from(
-//     formElement.querySelectorAll(settings.inputSelector)
-//   );
-//   const buttonElement = formElement.querySelector(
-//     settings.submitButtonSelector
-//   );
-
-//   toggleButtonState(inputList, buttonElement, settings);
-
-//   inputList.forEach((inputElement) => {
-//     inputElement.addEventListener("input", () => {
-//       checkInputValidity(formElement, inputElement, settings);
-//       toggleButtonState(inputList, buttonElement, settings);
-//     });
-//   });
-// }
-
-// function toggleButtonState(inputList, buttonElement, settings) {
-//   if (hasInvalidInput(inputList)) {
-//     buttonElement.classList.add(settings.inactiveButtonClass);
-//     buttonElement.setAttribute("disabled", true);
-//   } else {
-//     buttonElement.classList.remove(settings.inactiveButtonClass);
-//     buttonElement.removeAttribute("disabled");
-//   }
-// }
-
-// function hasInvalidInput(inputList) {
-//   return inputList.some((input) => {
-//     return !input.validity.valid;
-//   });
-// }
-
-// function checkInputValidity(formElement, inputElement, settings) {
-//   if (!inputElement.validity.valid) {
-//     showInputError(
-//       formElement,
-//       inputElement,
-//       inputElement.validationMessage,
-//       settings
-//     );
-//   } else {
-//     hideInputError(formElement, inputElement, settings);
-//   }
-// }
-
-// function showInputError(formElement, inputElement, errorMessage, settings) {
-//   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-
-//   inputElement.classList.add(settings.inputErrorClass);
-//   errorElement.textContent = errorMessage;
-//   errorElement.classList.add(settings.errorClass);
-// }
-
-// function hideInputError(formElement, inputElement, settings) {
-//   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-
-//   inputElement.classList.remove(settings.inputErrorClass);
-//   errorElement.classList.remove(settings.errorClass);
-//   errorElement.textContent = "";
-// }

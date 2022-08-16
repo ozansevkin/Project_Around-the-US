@@ -113,6 +113,7 @@
   border: 1px solid #000;
   opacity: 0.2;
   background-color: rgba(0, 0, 0, 0);
+  cursor: default;
 }
 
 .popup__submit-button_inactive:hover {
