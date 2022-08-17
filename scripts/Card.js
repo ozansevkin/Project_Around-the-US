@@ -32,7 +32,8 @@ export default class Card {
   _getElement() {
     return document
       .querySelector(this._templateSelector)
-      .content.cloneNode(true);
+      .content.querySelector(".card")
+      .cloneNode(true);
   }
 
   _listenCardLikeButtonClick() {
