@@ -48,7 +48,7 @@
 
 Ozan Sevkin - [@ozansevkin](https://twitter.com/ozansevkin) - [linkedin] - sevkinozan@gmail.com
 
-Project Link: [https://github.com/ozansevkin/se_project_aroundtheus](https://github.com/ozansevkin/Project_Around-the-US/)
+Project Link: [https://github.com/ozansevkin/Project_Around-the-US](https://github.com/ozansevkin/Project_Around-the-US/)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
