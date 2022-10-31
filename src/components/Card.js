@@ -1,14 +1,10 @@
-import { openPopup } from "./utils.js";
-
-const cardImagePopup = document.querySelector(".popup_type_image");
-const cardImagePopupImage = cardImagePopup.querySelector(".popup__image");
-const cardImagePopupSubtitle = cardImagePopup.querySelector(".popup__subtitle");
-
 export default class Card {
-  constructor(data, templateSelector) {
+  constructor({ data, handleCardImageClick }, templateSelector) {
+    this._data = data;
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
+    this._handleCardImageClick = handleCardImageClick;
   }
 
   createCard() {
@@ -59,14 +55,7 @@ export default class Card {
 
   _listenCardImageClick() {
     this._cardImage.addEventListener("click", () => {
-      this._openCardImagePopup();
+      this._handleCardImageClick(this._data);
     });
-  }
-
-  _openCardImagePopup() {
-    cardImagePopupImage.src = this._cardImage.src;
-    cardImagePopupImage.alt = this._cardImage.alt;
-    cardImagePopupSubtitle.textContent = this._cardImage.alt;
-    openPopup(cardImagePopup);
   }
 }
