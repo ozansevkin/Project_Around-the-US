@@ -1,6 +1,6 @@
 # Project: Around The U.S.
 
-[![Around The U.S.][product-screenshot]](https://ozansevkin.github.io/se_project_aroundtheus/)
+[![Around The U.S.][product-screenshot]](https://ozansevkin.github.io/Project_Around-the-US//)
 
 ## Overview
 
@@ -18,7 +18,7 @@
 
 - BEM methodology with flat file structure has been used.
 
-- [A live version](https://ozansevkin.github.io/se_project_aroundtheus/) of the main branch deployed to github pages.
+- [A live version](https://ozansevkin.github.io/Project_Around-the-US/) of the main branch deployed to github pages.
 
 ### Built with
 
@@ -30,7 +30,7 @@
 
 ### Live version of the project
 
-[Click here to view the live version](https://ozansevkin.github.io/se_project_aroundtheus/)
+[Click here to view the live version](https://ozansevkin.github.io/Project_Around-the-US/)
 
 ## Roadmap
 
@@ -48,7 +48,7 @@
 
 Ozan Sevkin - [@ozansevkin](https://twitter.com/ozansevkin) - [linkedin] - sevkinozan@gmail.com
 
-Project Link: [https://github.com/ozansevkin/se_project_aroundtheus](https://github.com/ozansevkin/se_project_aroundtheus)
+Project Link: [https://github.com/ozansevkin/Project_Around-the-US](https://github.com/ozansevkin/Project_Around-the-US/)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
