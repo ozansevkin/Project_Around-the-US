@@ -2,7 +2,7 @@
 import "./index.css";
 
 // Import classses
-import { selectors, initialCards, formformSettingss } from "../utils/constants";
+import { selectors, initialCards, formSettings } from "../utils/constants";
 import Card from "../components/Card";
 import FormValidator from "../components/FormValidator";
 import Section from "../components/Section";
