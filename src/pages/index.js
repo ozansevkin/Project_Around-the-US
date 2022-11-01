@@ -1,7 +1,7 @@
 // Import CSS for Webpack
 import "./index.css";
 
-// Import classses
+// Import classses and constants
 import { selectors, initialCards, formSettings } from "../utils/constants";
 import Card from "../components/Card";
 import FormValidator from "../components/FormValidator";
@@ -25,6 +25,12 @@ function fillProfileForm() {
   editProfilePopup.setInputValues(userInfo);
 }
 
+/**
+ * Creates a new card element with given data (name and image link)
+ *
+ * @param {object} data
+ * @returns {object} cardElement
+ */
 function createCard(data) {
   const card = new Card(
     {
@@ -41,6 +47,11 @@ function createCard(data) {
   return cardElement;
 }
 
+/**
+ * Enables form validation for all forms and makes it accesible by 'name'
+ *
+ * @param {object} formSettings
+ */
 const enableFormValidation = (formSettings) => {
   const formList = Array.from(document.querySelectorAll(selectors.popupForm));
   formList.forEach((formElement) => {
@@ -76,12 +87,11 @@ const editProfilePopup = new PopupWithForm(selectors.editProfilePopup, {
   submitForm: (evt) => {
     evt.preventDefault();
 
-    const inputValues = editProfilePopup.getInputValues();
+    // Destructure and reassign values object
+    const { name: formInputName, title: formInputTitle } =
+      editProfilePopup.getInputValues();
 
-    user.setUserInfo({
-      formInputName: inputValues.name,
-      formInputTitle: inputValues.title,
-    });
+    user.setUserInfo({ formInputName, formInputTitle });
 
     editProfilePopup.close();
   },
@@ -91,15 +101,10 @@ const addCardPopup = new PopupWithForm(selectors.addCardPopup, {
   submitForm: (evt) => {
     evt.preventDefault();
 
-    const inputValues = addCardPopup.getInputValues();
+    // Destructure and reassign values object
+    const { title: name, link } = addCardPopup.getInputValues();
 
-    const name = inputValues.title;
-    const link = inputValues.link;
-    const data = { name, link };
-
-    const newCard = createCard(data);
-
-    cardSection.addItem(newCard);
+    cardSection.addItem({ name, link });
 
     addCardPopup.close();
   },
