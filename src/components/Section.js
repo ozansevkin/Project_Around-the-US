@@ -7,11 +7,12 @@ export default class Section {
 
   renderItems() {
     this._items.forEach((item) => {
-      this._renderer(item);
+      this.addItem(item);
     });
   }
 
   addItem(item) {
-    this._element.prepend(item);
+    const renderedItem = this._renderer(item);
+    this._element.prepend(renderedItem);
   }
 }

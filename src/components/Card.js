@@ -1,3 +1,5 @@
+import { selectors } from "../utils/constants";
+
 export default class Card {
   constructor({ data, handleCardImageClick }, templateSelector) {
     this._data = data;
@@ -10,17 +12,18 @@ export default class Card {
   createCard() {
     this._card = this._getElement();
 
-    this._cardTitle = this._card.querySelector(".card__title");
-    this._cardImage = this._card.querySelector(".card__image");
-    this._cardLikeButton = this._card.querySelector(".card__like-button");
-    this._cardDeleteButton = this._card.querySelector(".card__delete-button");
+    this._cardTitle = this._card.querySelector(selectors.cardTitle);
+    this._cardImage = this._card.querySelector(selectors.cardImage);
+    this._cardLikeButton = this._card.querySelector(selectors.cardLikeButton);
+    this._cardDeleteButton = this._card.querySelector(
+      selectors.cardDeleteButton
+    );
 
     this._cardTitle.textContent = this._name;
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
-    this._listenCardLikeButtonClick();
-    this._listenCardDeleteButtonClick();
-    this._listenCardImageClick();
+
+    this._setEventListeners();
 
     return this._card;
   }
@@ -28,7 +31,7 @@ export default class Card {
   _getElement() {
     return document
       .querySelector(this._templateSelector)
-      .content.querySelector(".card")
+      .content.querySelector(selectors.card)
       .cloneNode(true);
   }
 
@@ -39,7 +42,7 @@ export default class Card {
   }
 
   _toggleCardLikeButton() {
-    this._cardLikeButton.classList.toggle("card__like-button_clicked");
+    this._cardLikeButton.classList.toggle(selectors.cardLikeButtonActiveClass);
   }
 
   _listenCardDeleteButtonClick() {
@@ -57,5 +60,11 @@ export default class Card {
     this._cardImage.addEventListener("click", () => {
       this._handleCardImageClick(this._data);
     });
+  }
+
+  _setEventListeners() {
+    this._listenCardLikeButtonClick();
+    this._listenCardDeleteButtonClick();
+    this._listenCardImageClick();
   }
 }

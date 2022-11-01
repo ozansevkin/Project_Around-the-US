@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin"); // connect plug
 module.exports = {
   devtool: "inline-source-map", //This option lets you choose a style of source mapping in a browser to enhance the debugging process. With the inline-source-map value, you will see the original code in the debugger.
   entry: {
-    main: "./src/components/index.js",
+    main: "./src/pages/index.js",
   },
   output: {
     // rewrite the output point using the path utility

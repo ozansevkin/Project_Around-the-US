@@ -5,10 +5,10 @@ export default class UserInfo {
   }
 
   getUserInfo() {
-    const userNameText = this._userName.textContent;
-    const userTitleText = this._userTitle.textContent;
+    const name = this._userName.textContent;
+    const title = this._userTitle.textContent;
 
-    return { userNameText, userTitleText };
+    return { name, title };
   }
 
   setUserInfo({ formInputName, formInputTitle }) {

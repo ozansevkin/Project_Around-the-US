@@ -43,6 +43,8 @@
 - [x] Validate all forms with js
 - [x] Add esc and overlay close
 - [x] Use OOP and modular js for cards and form validation
+- [x] Add more classes and use loose coupling to combine them
+- [x] set up Webpack bundling and building
 
 ## Contact
 

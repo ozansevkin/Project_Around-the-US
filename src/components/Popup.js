@@ -14,13 +14,12 @@ export default class Popup {
     document.removeEventListener("keydown", this._handleEscClose);
   }
 
-  _handleEscClose(evt) {
+  // Arrow method
+  _handleEscClose = (evt) => {
     if (evt.key === "Escape") {
-      const openedPopup = document.querySelector(".popup_opened");
-      openedPopup.classList.remove("popup_opened");
-      document.removeEventListener("keydown", this._handleEscClose);
+      this.close();
     }
-  }
+  };
 
   setEventListeners() {
     // Overlay Close
