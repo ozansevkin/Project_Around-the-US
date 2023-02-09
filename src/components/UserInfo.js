@@ -1,18 +1,33 @@
+import { selectors } from "../utils/constants";
+
 export default class UserInfo {
-  constructor({ userNameSelector, userTitleSelector }) {
-    this._userName = document.querySelector(userNameSelector);
-    this._userTitle = document.querySelector(userTitleSelector);
+  constructor() {
+    this._userName = document.querySelector(selectors.userName);
+    this._userAbout = document.querySelector(selectors.userAbout);
+    this._userAvatar = document.querySelector(selectors.userAvatar);
+    this._userInfo = document.querySelector(selectors.userInfo);
   }
 
   getUserInfo() {
     const name = this._userName.textContent;
-    const title = this._userTitle.textContent;
+    const about = this._userAbout.textContent;
 
-    return { name, title };
+    return { name, about };
   }
 
-  setUserInfo({ formInputName, formInputTitle }) {
-    this._userName.textContent = formInputName;
-    this._userTitle.textContent = formInputTitle;
+  setUserInfo({ name, about }) {
+    this._userName.textContent = name;
+    this._userAbout.textContent = about;
+  }
+
+  setUserAvatar(avatar) {
+    this._userAvatar.src = avatar;
+  }
+
+  renderUserInfo({ name, about, avatar, _id }) {
+    this._userName.textContent = name;
+    this._userAbout.textContent = about;
+    this._userAvatar.src = avatar;
+    this._userInfo.id = _id;
   }
 }

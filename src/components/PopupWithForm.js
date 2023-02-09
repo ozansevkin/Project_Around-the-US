@@ -6,6 +6,8 @@ export default class PopupWithForm extends Popup {
     super(selector);
     this._submitForm = submitForm;
     this._form = this._element.querySelector(selectors.popupForm);
+    this._submitButton = this._element.querySelector(selectors.submitButton);
+    this._submitButtonInitialText = this._submitButton.textContent;
     this._inputList = this._element.querySelectorAll(selectors.popupInput);
   }
 
@@ -30,6 +32,18 @@ export default class PopupWithForm extends Popup {
       // Insert the `value` by the `name` of the input
       input.value = data[input.name];
     });
+  }
+
+  enableLoadingState() {
+    const e = new RegExp("e" + "$");
+    this._submitButton.textContent = this._submitButtonInitialText.replace(
+      e,
+      "ing..."
+    );
+  }
+
+  disableLoadingState() {
+    this._submitButton.textContent = this._submitButtonInitialText;
   }
 
   setEventListeners() {

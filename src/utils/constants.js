@@ -1,27 +1,3 @@
-export const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
-  },
-  { name: "Latemar", link: "https://code.s3.yandex.net/web-code/latemar.jpg" },
-  {
-    name: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg",
-  },
-];
-
 // Settings for form validation
 export const formSettings = {
   inputSelector: ".popup__input",
@@ -36,20 +12,29 @@ export const selectors = {
   cardsContainer: ".cards",
   cardTemplate: "#card-template",
   card: ".card",
-  cardTitle: ".card__title",
+  cardName: ".card__name",
   cardImage: ".card__image",
   cardLikeButton: ".card__like-button",
   cardLikeButtonActiveClass: "card__like-button_clicked",
+  cardLikeCount: ".card__like-count",
   cardDeleteButton: ".card__delete-button",
+  cardDeleteButtonVisibleClass: "card__delete-button_visible",
   popupImage: ".popup_type_image",
+  editAvatarPopup: ".popup_type_avatar",
   editProfilePopup: ".popup_type_edit",
   addCardPopup: ".popup_type_add",
+  deleteCardPopup: ".popup_type_delete",
   popupForm: ".popup__form",
   popupInput: ".popup__input",
+  submitButton: ".popup__submit-button",
   userName: ".profile__name",
-  userTitle: ".profile__title",
+  userAbout: ".profile__about",
+  userAvatar: ".profile__avatar",
+  userInfo: ".profile__info",
+  editAvatarOverlay: ".profile__avatar-wrapper",
   editButton: ".profile__edit-button",
   addButton: ".profile__add-button",
+  avatarFormName: "avatar-form",
   profileFormName: "profile-form",
   cardFormName: "card-form",
 };

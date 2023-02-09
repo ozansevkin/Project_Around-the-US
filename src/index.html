@@ -17,19 +17,17 @@
       </header>
       <main class="main">
         <section class="profile">
-          <img
-            src="<%= require('./images/profile__avatar.jpg') %>"
-            alt="Profile Photo"
-            class="profile__avatar"
-          />
-          <div class="profile__info">
-            <h1 class="profile__name">Jacques Cosuteau</h1>
+          <div class="profile__avatar-wrapper">
+            <img src="#" alt="Profile Photo" class="profile__avatar" />
+          </div>
+          <div class="profile__info" id="#">
+            <h1 class="profile__name"></h1>
             <button
               aria-label="edit"
               type="button"
               class="profile__edit-button"
             ></button>
-            <p class="profile__title">Explorer</p>
+            <p class="profile__about"></p>
           </div>
           <button
             aria-label="add"
@@ -47,12 +45,15 @@
               ></button>
               <img src="#" alt="#" class="card__image" />
               <div class="card__info">
-                <h2 class="card__title">#</h2>
-                <button
-                  aria-label="like"
-                  type="button"
-                  class="card__like-button"
-                ></button>
+                <h2 class="card__name"></h2>
+                <div class="card__like-wrapper">
+                  <button
+                    aria-label="like"
+                    type="button"
+                    class="card__like-button"
+                  ></button>
+                  <p class="card__like-count"></p>
+                </div>
               </div>
             </article>
           </template>
@@ -60,7 +61,7 @@
       </main>
       <footer class="footer">
         <p class="footer__copyright">
-          &copy; 2022 Around the U.S. - Ozan Sevkin
+          &copy; 2023 Around the U.S. - Ozan Sevkin
         </p>
       </footer>
       <div class="popup popup_type_edit">
@@ -71,7 +72,7 @@
             class="popup__close-button"
           ></button>
           <form name="profile-form" class="popup__form" novalidate>
-            <h2 class="popup__title">Edit profile</h2>
+            <h2 class="popup__title">Edit Profile</h2>
             <fieldset class="popup__form-field">
               <input
                 type="text"
@@ -82,22 +83,51 @@
                 maxlength="40"
                 class="popup__input popup__input_type_name"
                 id="edit-profile-name-input"
+                autofocus
               />
               <span
                 class="popup__input-error-text edit-profile-name-input-error"
               ></span>
               <input
                 type="text"
-                name="title"
-                placeholder="Title"
+                name="about"
+                placeholder="About"
                 required
                 minlength="2"
                 maxlength="200"
-                class="popup__input popup__input_type_title"
-                id="edit-profile-title-input"
+                class="popup__input popup__input_type_about"
+                id="edit-profile-about-input"
               />
               <span
-                class="popup__input-error-text edit-profile-title-input-error"
+                class="popup__input-error-text edit-profile-about-input-error"
+              ></span>
+              <button type="submit" class="popup__submit-button">Save</button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup popup_type_avatar">
+        <div class="popup__container">
+          <button
+            aria-label="close"
+            type="button"
+            class="popup__close-button"
+          ></button>
+          <form name="avatar-form" class="popup__form" novalidate>
+            <h2 class="popup__title">Change Profile Picture</h2>
+            <fieldset class="popup__form-field">
+              <input
+                type="url"
+                name="avatar"
+                placeholder="Image URL"
+                required
+                class="popup__input"
+                id="edit-avatar-link-input"
+                autofocus
+              />
+              <span
+                class="popup__input-error-text edit-avatar-link-input-error"
               ></span>
               <button type="submit" class="popup__submit-button">Save</button>
             </fieldset>
@@ -117,16 +147,17 @@
             <fieldset class="popup__form-field">
               <input
                 type="text"
-                name="title"
-                placeholder="Title"
+                name="name"
+                placeholder="Name"
                 required
                 minlength="1"
                 maxlength="30"
                 class="popup__input"
-                id="new-place-title-input"
+                id="new-place-name-input"
+                autofocus
               />
               <span
-                class="popup__input-error-text new-place-title-input-error"
+                class="popup__input-error-text new-place-name-input-error"
               ></span>
               <input
                 type="url"
@@ -145,6 +176,35 @@
         </div>
       </div>
 
+      <div class="popup popup_type_delete">
+        <div class="popup__container">
+          <button
+            aria-label="close"
+            type="button"
+            class="popup__close-button"
+          ></button>
+          <form name="card-delete-form" class="popup__form" novalidate>
+            <h2 class="popup__title popup__title_type_delete">Are you sure?</h2>
+            <fieldset class="popup__form-field">
+              <input
+                type="hidden"
+                name="cardId"
+                value="#"
+                class="popup__input"
+                id="delete-place-card-id-input"
+              />
+              <button
+                type="submit"
+                class="popup__submit-button popup__submit-button_type_delete"
+                autofocus
+              >
+                Yes
+              </button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+
       <div class="popup popup_type_image">
         <div class="popup__image-container">
           <button
@@ -153,7 +213,7 @@
             class="popup__close-button"
           ></button>
           <img class="popup__image" src="#" alt="#" />
-          <figcaption class="popup__subtitle">#</figcaption>
+          <figcaption class="popup__subtitle"></figcaption>
         </div>
       </div>
     </div>
