@@ -60,10 +60,14 @@ export default class Card {
 
   _listenCardLikeButtonClick() {
     this._cardLikeButton.addEventListener("click", () => {
-      this._toggleCardLikeButton();
       this._handleCardLikeClick(this._id, this._isLiked);
-      this._isLiked = !this._isLiked;
     });
+  }
+
+  updateCardLike(data) {
+    this._updateLikeCount(data);
+    this._toggleCardLikeButton();
+    this._isLiked = !this._isLiked;
   }
 
   _toggleCardLikeButton() {
@@ -74,7 +78,7 @@ export default class Card {
     return data.likes.length.toString();
   }
 
-  updateLikeCount(data) {
+  _updateLikeCount(data) {
     this._cardLikeCount.textContent = this._getLikeCount(data);
   }
 

@@ -46,8 +46,18 @@ function createCard(data) {
       },
       handleCardLikeClick: (cardId, isLiked) => {
         isLiked
-          ? api.deleteLike(cardId).then((data) => card.updateLikeCount(data))
-          : api.addLike(cardId).then((data) => card.updateLikeCount(data));
+          ? api
+              .deleteLike(cardId)
+              .then((data) => {
+                card.updateCardLike(data);
+              })
+              .catch(api.handleError)
+          : api
+              .addLike(cardId)
+              .then((data) => {
+                card.updateCardLike(data);
+              })
+              .catch(api.handleError);
       },
     },
     selectors.cardTemplate
@@ -91,9 +101,7 @@ const user = new UserInfo();
 
 const cardSection = new Section(
   {
-    renderer: (data) => {
-      return createCard(data);
-    },
+    renderer: createCard,
   },
   selectors.cardsContainer
 );
@@ -101,45 +109,51 @@ const cardSection = new Section(
 const cardPreviewPopup = new PopupWithImage(selectors.popupImage);
 
 const editAvatarPopup = new PopupWithForm(selectors.editAvatarPopup, {
-  submitForm: (evt) => {
+  handleSubmit: (evt) => {
     evt.preventDefault();
 
-    editAvatarPopup.enableLoadingState();
+    editAvatarPopup.renderLoading(true);
 
     // Destructure and reassign values object
     const avatar = editAvatarPopup.getInputValues();
 
     api
       .editUserAvatar(avatar)
-      .then((userData) => user.setUserAvatar(userData.avatar))
-      .finally(() => {
+      .then((userData) => {
+        user.renderUserInfo(userData);
         editAvatarPopup.close();
-        editAvatarPopup.disableLoadingState();
+      })
+      .catch(api.handleError)
+      .finally(() => {
+        editAvatarPopup.renderLoading(false);
       });
   },
 });
 
 const editProfilePopup = new PopupWithForm(selectors.editProfilePopup, {
-  submitForm: (evt) => {
+  handleSubmit: (evt) => {
     evt.preventDefault();
 
-    editProfilePopup.enableLoadingState();
+    editProfilePopup.renderLoading(true);
 
     // Destructure and reassign values object
     const { name, about } = editProfilePopup.getInputValues();
 
     api
       .editUserInfo({ name, about })
-      .then((userData) => user.setUserInfo(userData))
-      .finally(() => {
+      .then((userData) => {
+        user.renderUserInfo(userData);
         editProfilePopup.close();
-        editProfilePopup.disableLoadingState();
+      })
+      .catch(api.handleError)
+      .finally(() => {
+        editProfilePopup.renderLoading(false);
       });
   },
 });
 
 const deleteCardPopup = new PopupWithForm(selectors.deleteCardPopup, {
-  submitForm: (evt) => {
+  handleSubmit: (evt) => {
     evt.preventDefault();
 
     //Find and delete the card
@@ -148,34 +162,43 @@ const deleteCardPopup = new PopupWithForm(selectors.deleteCardPopup, {
 
     api
       .deleteCard(cardId)
-      .then(cardElement.remove())
-      .finally(deleteCardPopup.close());
+      .then(() => {
+        cardElement.remove();
+        deleteCardPopup.close();
+      })
+      .catch(api.handleError);
   },
 });
 
 const addCardPopup = new PopupWithForm(selectors.addCardPopup, {
-  submitForm: (evt) => {
+  handleSubmit: (evt) => {
     evt.preventDefault();
-    addCardPopup.enableLoadingState();
+    addCardPopup.renderLoading(true, "Creating...");
 
     // Destructure and reassign values object
     const { name, link } = addCardPopup.getInputValues();
 
     api
       .addNewCard({ name, link })
-      .then((cardData) => cardSection.addItem(cardData))
-      .finally(() => {
+      .then((cardData) => {
+        cardSection.addItem(cardData);
         addCardPopup.close();
-        addCardPopup.disableLoadingState();
+      })
+      .catch(api.handleError)
+      .finally(() => {
+        addCardPopup.renderLoading(false);
       });
   },
 });
 
 // Initialize class instances
-api.getAppInfo().then(([userData, cardsData]) => {
-  user.renderUserInfo(userData);
-  cardSection.renderItems(cardsData);
-});
+api
+  .getAppInfo()
+  .then(([userData, cardsData]) => {
+    user.renderUserInfo(userData);
+    cardSection.renderItems(cardsData);
+  })
+  .catch(api.handleError);
 
 cardPreviewPopup.setEventListeners();
 editAvatarPopup.setEventListeners();

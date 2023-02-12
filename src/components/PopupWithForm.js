@@ -2,9 +2,9 @@ import { selectors } from "../utils/constants";
 import Popup from "./Popup";
 
 export default class PopupWithForm extends Popup {
-  constructor(selector, { submitForm }) {
-    super(selector);
-    this._submitForm = submitForm;
+  constructor(popupSelector, { handleSubmit }) {
+    super(popupSelector);
+    this._handleSubmit = handleSubmit;
     this._form = this._element.querySelector(selectors.popupForm);
     this._submitButton = this._element.querySelector(selectors.submitButton);
     this._submitButtonInitialText = this._submitButton.textContent;
@@ -34,22 +34,18 @@ export default class PopupWithForm extends Popup {
     });
   }
 
-  enableLoadingState() {
-    const e = new RegExp("e" + "$");
-    this._submitButton.textContent = this._submitButtonInitialText.replace(
-      e,
-      "ing..."
-    );
-  }
-
-  disableLoadingState() {
-    this._submitButton.textContent = this._submitButtonInitialText;
+  renderLoading(isLoading, loadingText = "Saving...") {
+    if (isLoading) {
+      this._submitButton.textContent = loadingText;
+    } else {
+      this._submitButton.textContent = this._submitButtonInitialText;
+    }
   }
 
   setEventListeners() {
     super.setEventListeners();
 
     // Submit
-    this._element.addEventListener("submit", this._submitForm);
+    this._element.addEventListener("submit", this._handleSubmit);
   }
 }
