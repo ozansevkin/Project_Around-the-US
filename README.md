@@ -44,7 +44,14 @@
 - [x] Add esc and overlay close
 - [x] Use OOP and modular js for cards and form validation
 - [x] Add more classes and use loose coupling to combine them
-- [x] set up Webpack bundling and building
+- [x] Set up Webpack bundling and building
+- [x] Connect project to the server with fetch api requests
+- [x] Get user and cards data from the server and update as needed
+- [x] Add changing profile photo
+- [x] Add like count
+- [x] Add a popup for deleting a card
+- [x] Authenticate deleting card
+- [x] Improve UX of forms by changing button text when uploading data
 
 ## Contact
 
