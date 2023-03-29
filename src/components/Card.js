@@ -6,12 +6,7 @@ export default class Card {
     templateSelector
   ) {
     this._data = data;
-    this._name = data.name;
-    this._link = data.link;
-    this._likes = data.likes;
-    this._id = data._id;
     this._userId = document.querySelector(selectors.userInfo).id;
-    this._ownerId = data.owner._id;
     this._templateSelector = templateSelector;
     this._handleCardImageClick = handleCardImageClick;
     this._handleCardDeleteClick = handleCardDeleteClick;
@@ -29,10 +24,10 @@ export default class Card {
       selectors.cardDeleteButton
     );
 
-    this._cardName.textContent = this._name;
-    this._cardImage.src = this._link;
-    this._cardImage.alt = this._name;
-    this._card.id = this._id;
+    this._cardName.textContent = this._data.name;
+    this._cardImage.src = this._data.link;
+    this._cardImage.alt = this._data.name;
+    this._card.id = this._data._id;
 
     this._cardLikeCount.textContent = this._getLikeCount(this._data);
     this._findLikeStatus();
@@ -60,7 +55,7 @@ export default class Card {
 
   _listenCardLikeButtonClick() {
     this._cardLikeButton.addEventListener("click", () => {
-      this._handleCardLikeClick(this._id, this._isLiked);
+      this._handleCardLikeClick(this._data._id, this._isLiked);
     });
   }
 
@@ -83,11 +78,11 @@ export default class Card {
   }
 
   _getLikedUserIds() {
-    return this._likes.map((like) => like._id);
+    return this._data.likes.map((like) => like._id);
   }
 
   _authenticateCardDelete() {
-    if (this._userId == this._ownerId) {
+    if (this._userId == this._data.owner._id) {
       this._showCardDeleteButton();
     }
   }
@@ -100,7 +95,7 @@ export default class Card {
 
   _listenCardDeleteButtonClick() {
     this._cardDeleteButton.addEventListener("click", () => {
-      this._handleCardDeleteClick({ cardId: this._id });
+      this._handleCardDeleteClick({ cardId: this._data._id });
     });
   }
 
@@ -110,9 +105,23 @@ export default class Card {
     });
   }
 
+  _listenCardImageError() {
+    this._cardImage.addEventListener("error", () =>
+      this._handleCardImageError(
+        "https://placehold.co/400x400?text=Around+The+U.S."
+      )
+    );
+  }
+
+  _handleCardImageError(placeholderPath) {
+    this._data.link = placeholderPath;
+    this._cardImage.src = placeholderPath;
+  }
+
   _setEventListeners() {
     this._listenCardLikeButtonClick();
     this._listenCardDeleteButtonClick();
     this._listenCardImageClick();
+    this._listenCardImageError();
   }
 }
